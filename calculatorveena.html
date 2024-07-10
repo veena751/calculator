@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url(https://png.pngtree.com/thumb_back/fh260/background/20200703/pngtree-hand-drawn-math-education-calculator-ruler-background-image_340650.jpg) no-repeat center center fixed;
+            background-size: cover;
+
+        }
+        .calculator {
+            background-color: #FF9A8A;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            width: 100%;
+            height: 50px;
+            background-color: #222;
+            color: #fff;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 20px;
+            font-size: 1.2em;
+            background-color: #eee;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button:active {
+            background-color: #ddd;
+        }
+        .buttons .equal {
+            background-color:#90D5FF ;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .buttons .equal:active {
+            background-color: #45a049;
+        }
+        .buttons .clear {
+            background-color: #f44336;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .buttons .clear:active {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function appendToDisplay(value) {
+            if (display.innerText === '0') {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+            currentInput += value;
+        }
+
+        function clearDisplay() {
+            display.innerText = '0';
+            currentInput = '';
+        }
+
+        function calculate() {
+            try {
+                display.innerText = eval(currentInput);
+                currentInput = display.innerText;
+            } catch (error) {
+                display.innerText = 'Error';
+                currentInput = '';
+            }
+        }
+    </script>
+</body>
+</html>
